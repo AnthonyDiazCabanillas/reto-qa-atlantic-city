@@ -1,0 +1,25 @@
+{
+  "name": "atlantic-city-login-e2e",
+  "version": "1.0.0",
+  "description": "Pregunta 10 - Automatización del login de Casino Atlantic City con Playwright + Cucumber (BDD) + TypeScript",
+  "private": true,
+  "scripts": {
+    "test": "cucumber-js",
+    "test:smoke": "cucumber-js --tags @smoke",
+    "test:visual": "cross-env HEADLESS=false SLOWMO=500 cucumber-js",
+    "test:chrome": "cross-env CHANNEL=chrome HEADLESS=false cucumber-js",
+    "test:firefox": "cross-env BROWSER=firefox cucumber-js",
+    "test:webkit": "cross-env BROWSER=webkit cucumber-js",
+    "typecheck": "tsc --noEmit",
+    "trace": "playwright show-trace"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^20.14.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

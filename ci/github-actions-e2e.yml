@@ -1,0 +1,43 @@
+# Pipeline de CI para la Parte 2 (login E2E).
+# Para activarlo, mover este archivo a: .github/workflows/e2e.yml
+# y crear en GitHub -> Settings -> Secrets and variables -> Actions los secrets:
+#   CASINO_USER y CASINO_PASSWORD
+name: E2E Login - Playwright + Cucumber
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: parte2-automatizacion
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Ejecutar pruebas
+        env:
+          CASINO_USER: ${{ secrets.CASINO_USER }}
+          CASINO_PASSWORD: ${{ secrets.CASINO_PASSWORD }}
+        run: npm test
+
+      - name: Publicar reportes y traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-e2e
+          path: parte2-automatizacion/reports/
