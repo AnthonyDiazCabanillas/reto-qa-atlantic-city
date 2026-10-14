@@ -37,7 +37,7 @@ Las consultas SQL incluyen un script con el esquema y datos de prueba con valore
 │   ├── performance/       Script k6 de referencia (P6)
 │   └── sql/               P8, P9 y datos de prueba
 ├── parte2-automatizacion/ P10 (Playwright + Cucumber)
-└── ci/                    Pipeline de GitHub Actions
+└── .github/workflows/     Pipeline de GitHub Actions (e2e.yml)
 ```
 
 ## Ejecución rápida de la automatización

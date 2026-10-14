@@ -42,7 +42,7 @@ Reporte: `reports/cucumber-report.html`, con una captura por paso. Si un escenar
 - **Popups de terceros bloqueados.** En la primera ejecución apareció un popup promocional de Optimove encima del modal de login y bloqueó los clics. Se bloquean por red (`context.route`) los dominios de marketing, chat y pruebas A/B. No se bloquea el antifraude ni nada del propio casino. Se desactiva con `BLOCK_THIRD_PARTY=false`.
 - **Fallo con el motivo real.** Si el sitio rechaza el login, la prueba falla mostrando el mensaje del sitio y no un timeout genérico.
 - **Evidencia.** Captura en cada paso y trace solo en los fallos.
-- **CI.** Ver `../ci/github-actions-e2e.yml`, que hace 1 reintento en CI porque el sitio es público y puede tener fallos de red.
+- **CI.** Pipeline en `.github/workflows/e2e.yml`: se ejecuta en cada push a `main`, toma las credenciales de GitHub Secrets (`CASINO_USER` y `CASINO_PASSWORD`) y publica los reportes como artifact. Hace 1 reintento en CI porque el sitio es público y puede tener fallos de red.
 
 ## Hallazgo en la ejecución real
 
